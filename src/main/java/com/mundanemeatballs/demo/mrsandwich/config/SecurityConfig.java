@@ -3,6 +3,7 @@ package com.mundanemeatballs.demo.mrsandwich.config;
 import com.auth0.spring.security.api.JwtWebSecurityConfigurer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -25,7 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .forRS256(apiAudience, issuer)
                 .configure(http)
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/categories/**").hasAuthority("manage:tags")
+                .antMatchers("/**").permitAll() // for SwaggerUI
                 .anyRequest().authenticated();
     }
 }

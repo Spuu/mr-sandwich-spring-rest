@@ -11,17 +11,9 @@ import java.util.List;
 /**
  * Product
  */
-@Document
 @Getter
 @Setter
 public class Product {
-    @Id
-    private String id;
-
     private String name;
-
     private Double price;
-
-    @DBRef
-    private List<Category> categories;
 }

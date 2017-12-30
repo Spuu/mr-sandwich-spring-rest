@@ -13,7 +13,5 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 public class Category {
     @Id
-    private String id;
-
     private String name;
 }
