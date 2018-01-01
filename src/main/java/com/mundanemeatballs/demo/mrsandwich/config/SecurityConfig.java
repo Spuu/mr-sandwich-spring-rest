@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .forRS256(apiAudience, issuer)
                 .configure(http)
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/categories/**").hasAuthority("manage:tags")
+                .antMatchers("/api/categories/**").hasAuthority("manage:tags")
                 .antMatchers("/**").permitAll() // for SwaggerUI
                 .anyRequest().authenticated();
     }
